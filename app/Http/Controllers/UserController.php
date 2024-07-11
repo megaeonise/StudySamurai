@@ -20,7 +20,7 @@ class UserController extends Controller
 
     function loginPost(Request $request): RedirectResponse {
         $credentials = $request->validate([
-        'username' => ['required'],
+        'email' => ['required'],
         'password' => ['required'],
         ]);
 
@@ -28,7 +28,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect()->intended(route('placeholder'));
         }
-
+        
         return redirect(route('login'))->with("error","incorrect details");
     }
 
